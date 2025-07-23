@@ -6,7 +6,7 @@ Este é um projeto de teste técnico para criação de uma tela de **cadastro de
 
 ## 🎨 Layout
 O design do projeto pode ser visualizado no Figma:  
-[**Acessar layout no Figma**](https://www.figma.com/design/vVuWTaTEYzzR4Ec9K6sZHH/SantaCasaV1?node-id=0-1&t=qnQkYanZAPA8acS3-1)
+[**Acessar layout no Figma**](https://www.figma.com/design/vVuWTaTEYzzR4Ec9K6sZHH/SantaCasaV1?m=auto&t=ZdjeLwMW11Oxe0tA-1)
 
 ---
 
