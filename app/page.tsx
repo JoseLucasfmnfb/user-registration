@@ -1,103 +1,111 @@
-import Image from "next/image";
+'use client'
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import {
+  Card,
+  CardContent,
+} from "@/components/ui/card"
+import {
+  Input
+} from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Label } from "@/components/ui/label"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import Image from "next/image"
+import { formSchema } from "@/utils/formValidations"
+import InputMask from "react-input-mask"
 
-export default function Home() {
+export default function CadastroUsuario() {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue
+  } = useForm({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      termos: false
+    }
+  })
+
+  const onSubmit = async (data: any) => {
+    const result = formSchema.safeParse(data)
+    if (!result.success) {
+      console.log("Erros de validação:", result.error.format())
+      return
+    }
+
+    console.log("Dados válidos:", result.data)
+  }
+
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+      <Card className="w-full max-w-md">
+        <CardContent className="p-6">
+          <div className="flex justify-center mb-4">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src="/hospital-logo.png"
+              alt="Logo do Hospital"
+              width={120}
+              height={120}
+              className="w-auto"
+              priority
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+          </div>
+          <h2 className="text-2xl font-bold text-center text-[#2E2E72] mb-4">Cadastro de Usuário</h2>
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <div>
+              <Label htmlFor="nome" className="mb-2">Nome completo*</Label>
+              <Input id="nome" {...register("nome")} />
+              {errors.nome && <p className="text-sm text-red-500">{errors.nome.message}</p>}
+            </div>
+            <div>
+              <Label htmlFor="email" className="mb-2">E-mail*</Label>
+              <Input id="email" type="email" {...register("email")} />
+              {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
+            </div>
+            <div>
+              <Label htmlFor="senha" className="mb-2">Senha*</Label>
+              <Input id="senha" type="password" {...register("senha")} />
+              {errors.senha && <p className="text-sm text-red-500">{errors.senha.message}</p>}
+            </div>
+            <div>
+              <Label htmlFor="confirmarSenha" className="mb-2">Confirmar Senha*</Label>
+              <Input id="confirmarSenha" type="password" {...register("confirmarSenha")} />
+              {errors.confirmarSenha && <p className="text-sm text-red-500">{errors.confirmarSenha.message}</p>}
+            </div>
+            <div>
+              <Label htmlFor="telefone" className="mb-2">Telefone</Label>
+              <Input id="telefone" type="tel" placeholder="(99) 99999-9999" {...register("telefone")} />
+            </div>
+            <div>
+              <Label htmlFor="nascimento" className="mb-2">Data de Nascimento</Label>
+              <Input id="nascimento" type="date" {...register("nascimento")} />
+            </div>
+            <div>
+              <Label htmlFor="genero" className="mb-2">Gênero</Label>
+              <Select onValueChange={(value) => setValue("genero", value)}>
+                <SelectTrigger id="genero">
+                  <SelectValue placeholder="Selecione o gênero" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="feminino">Feminino</SelectItem>
+                  <SelectItem value="masculino">Masculino</SelectItem>
+                  <SelectItem value="outro">Outro</SelectItem>
+                  <SelectItem value="prefiro-nao-dizer">Prefiro não dizer</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Checkbox id="termos" onCheckedChange={(checked) => setValue("termos", checked === true)} />
+              <Label htmlFor="termos">Aceito os termos de uso*</Label>
+            </div>
+            {errors.termos && <p className="text-sm text-red-500">{errors.termos.message}</p>}
+            <Button type="submit" className="w-full bg-[#2E2E72] hover:bg-[#1c1c5a]">Cadastrar</Button>
+          </form>
+        </CardContent>
+      </Card>
     </div>
-  );
+  )
 }
