@@ -1,4 +1,4 @@
-export function formatPhone(value: string) {
+export function formatPhone(value: string | undefined) {
     if (!value) return ""
     const onlyNumbers = value.replace(/\D/g, "")
 

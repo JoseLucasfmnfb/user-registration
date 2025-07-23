@@ -112,7 +112,7 @@ export default function CadastroUsuario() {
 									<Input
 										id="telefone"
 										type="tel"
-										value={formatPhone(field.value)}
+										value={formatPhone(field.value) ?? ""}
 										onChange={(e) => field.onChange(formatPhone(e.target.value))}
 										placeholder="(99) 99999-9999"
 									/>
