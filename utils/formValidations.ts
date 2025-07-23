@@ -15,3 +15,5 @@ export const formSchema = z.object({
   message: "As senhas não coincidem",
   path: ["confirmarSenha"],
 })
+
+type FormData = z.infer<typeof formSchema>

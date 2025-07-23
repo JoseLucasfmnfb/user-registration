@@ -35,7 +35,7 @@ export default function CadastroUsuario() {
 		}
 	})
 
-	const onSubmit = async (data: any) => {
+	const onSubmit = async (data: FormData) => {
 		const result = formSchema.safeParse(data)
 		if (!result.success) {
 			console.log("Erros de validação:", result.error.format())
