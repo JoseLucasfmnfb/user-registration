@@ -14,7 +14,7 @@ import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import Image from "next/image"
-import { formSchema } from "@/utils/formValidations"
+import { formSchema, UserFormData  } from "@/utils/formValidations"
 import { formatPhone } from "@/utils/formaters"
 import { Eye, EyeOff } from "lucide-react"
 
@@ -35,7 +35,7 @@ export default function CadastroUsuario() {
 		}
 	})
 
-	const onSubmit = async (data: FormData) => {
+	const onSubmit = async (data: UserFormData) => {
 		const result = formSchema.safeParse(data)
 		if (!result.success) {
 			console.log("Erros de validação:", result.error.format())

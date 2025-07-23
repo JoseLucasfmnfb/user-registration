@@ -16,4 +16,4 @@ export const formSchema = z.object({
   path: ["confirmarSenha"],
 })
 
-type FormData = z.infer<typeof formSchema>
+export type UserFormData = z.infer<typeof formSchema>
