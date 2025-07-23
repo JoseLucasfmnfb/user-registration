@@ -14,7 +14,7 @@ import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import Image from "next/image"
-import { formSchema, UserFormData  } from "@/utils/formValidations"
+import { formSchema, UserFormData } from "@/utils/formValidations"
 import { formatPhone } from "@/utils/formaters"
 import { Eye, EyeOff } from "lucide-react"
 
@@ -120,8 +120,16 @@ export default function CadastroUsuario() {
 							)}
 						/>
 						<div>
-							<Label htmlFor="nascimento" className="mb-2">Data de Nascimento</Label>
-							<Input id="nascimento" type="date" {...register("nascimento")} />
+							<Label htmlFor="nascimento">Data de Nascimento</Label>
+							<Input
+								id="nascimento"
+								type="date"
+								max={new Date().toISOString().split("T")[0]}
+								{...register("nascimento")}
+							/>
+							{errors.nascimento && (
+								<p className="text-sm text-red-500">{errors.nascimento.message}</p>
+							)}
 						</div>
 						<div>
 							<Label htmlFor="genero" className="mb-2">Gênero</Label>
