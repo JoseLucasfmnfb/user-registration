@@ -4,6 +4,12 @@ Este é um projeto de teste técnico para criação de uma tela de **cadastro de
 
 ---
 
+## Projeto
+Para acessar o projeto online
+[**Acessar projeto online**](https://user-registration-sc.netlify.app)
+
+---
+
 ## 🎨 Layout
 O design do projeto pode ser visualizado no Figma:  
 [**Acessar layout no Figma**](https://www.figma.com/design/vVuWTaTEYzzR4Ec9K6sZHH/SantaCasaV1?m=auto&t=ZdjeLwMW11Oxe0tA-1)
