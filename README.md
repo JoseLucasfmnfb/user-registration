@@ -8,7 +8,7 @@ Este é um projeto de teste técnico para criação de uma tela de **cadastro de
 
 Este projeto está disponível para visualização online. Acesse pelo link abaixo:
 
-🔗 [Clique aqui para acessar o projeto online](URL_DO_PROJETO)
+🔗 [Clique aqui para acessar o projeto online](https://user-registration-sc.netlify.app)
 
 ---
 
